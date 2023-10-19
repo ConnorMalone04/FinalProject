@@ -8,31 +8,46 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     private Transform barrel;
     [SerializeField] float bulletSpeed = 10f;
+    private float spinTimer = 0f;
+    [SerializeField] float bulletDelay = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
-        barrel = transform.GetChild(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        barrel = transform.GetChild(0);
+        if (Input.GetButton("Fire1"))
         {
-            Fire();
+            if (spinTimer < bulletDelay)
+            {
+                Fire();
+            }
+            
+            isFiring = true;
         }
         else {
-            isFiring = false;
+            if (spinTimer <= 0)
+            {
+                isFiring = false;
+            }
+            
         }
+        if (isFiring)
+        {
+            //Start animation
+            Vector3 rot = new Vector3(barrel.eulerAngles.x, barrel.eulerAngles.y, barrel.eulerAngles.z + 2);
+            barrel.eulerAngles = rot;
+        }
+        spinTimer -= 0.01f;
 
     }
 
     private void Fire()
     {
-        if (!isFiring)
-        {
-            //Start animation
-        }
+        
 
         Vector3 fireDirection = transform.forward;
         Debug.Log(fireDirection);
@@ -46,6 +61,10 @@ public class Player : MonoBehaviour
 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = fireDirection * bulletSpeed;
-
+        startSpinTimer();
+    }
+    private void startSpinTimer()
+    {
+        spinTimer = 1f;
     }
 }
