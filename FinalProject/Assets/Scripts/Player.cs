@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] float bulletSpeed = 10f;
     private float spinTimer = 0f;
     [SerializeField] float bulletDelay = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,8 +48,6 @@ public class Player : MonoBehaviour
 
     private void Fire()
     {
-        
-
         Vector3 fireDirection = transform.forward;
         Debug.Log(fireDirection);
         fireDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z).normalized;
