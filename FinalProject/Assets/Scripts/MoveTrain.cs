@@ -18,7 +18,7 @@ public class MoveTrain : MonoBehaviour
     {
         Vector3 cPos = transform.position;
 
-        cPos -= transform.forward * speed * Time.deltaTime;
+        cPos -= new Vector3(0,0,1) * speed * Time.deltaTime;
 
         transform.position = cPos;
 
@@ -29,7 +29,6 @@ public class MoveTrain : MonoBehaviour
             // 380 ~= length of a landscape
             if (cPos.z < landPos.z - 1000)
             {
-                Transform plane = land.transform.Find("Plane");
 
                 //383.7207 is length from start of rail to end of rail, I couldn't
                 //find an accurate way to calculate it so I just snapped an object to

@@ -346,6 +346,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2815335443220634457, guid: 56768ff4de93b464890b6ccda9846dd4, type: 3}
   bulletSpeed: 37.75
   bulletDelay: 0.5
+  rotationSpeed: 1
 --- !u!1001 &1143773618
 PrefabInstance:
   m_ObjectHideFlags: 0
