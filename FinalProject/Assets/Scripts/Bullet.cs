@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -12,6 +13,11 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         camera = GameObject.FindGameObjectWithTag("MainCamera");
+
+
+        Quaternion rot = transform.rotation;
+        Vector3 rotV = new Vector3(rot.eulerAngles.x + 90, rot.eulerAngles.y, rot.eulerAngles.z);
+        transform.eulerAngles = rotV;
     }
 
     // Update is called once per frame
@@ -20,6 +26,8 @@ public class Bullet : MonoBehaviour
         
         if (camera.GetComponent<Transform>().transform.position.z < transform.position.z - 300)
         {
+            Debug.Log("Bulluet loco: " + transform.position.z);
+            Debug.Log("Cam loco: " + camera.GetComponent<Transform>().transform.position.z);
             Destroy(gameObject);
         }
     }

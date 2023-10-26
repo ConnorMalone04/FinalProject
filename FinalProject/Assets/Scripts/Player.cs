@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
         barrel = transform.GetChild(0);
         if (Input.GetButton("Fire1"))
         {
+            Debug.Log("Timer: " + spinTimer);
             if (spinTimer < bulletDelay)
             {
                 Fire();
@@ -69,12 +70,8 @@ public class Player : MonoBehaviour
     private void Fire()
     {
         Vector3 fireDirection = transform.forward;
-        Debug.Log(fireDirection);
-        fireDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z).normalized;
-        Debug.Log(fireDirection);
-        Debug.Log(barrel == null);
 
-        // Why is bullet going kindof diagonal?
+        fireDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z).normalized;
 
         GameObject bullet = Instantiate(bulletPrefab, barrel.position, transform.rotation);
 
