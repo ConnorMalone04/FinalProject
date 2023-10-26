@@ -18,9 +18,8 @@ public class MoveTrain : MonoBehaviour
     {
         Vector3 cPos = transform.position;
 
-        cPos -= new Vector3(0,0,1) * speed * Time.deltaTime;
-
-        transform.position = cPos;
+        Vector3 movement = new Vector3(0, 0, -1);
+        transform.Translate(movement * speed * Time.deltaTime);
 
         GameObject[] landscapes = GameObject.FindGameObjectsWithTag("Land");
         foreach (GameObject land in landscapes)

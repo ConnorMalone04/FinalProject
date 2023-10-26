@@ -9,19 +9,13 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int rand = Random.Range(0, 40);
-        rand -= 20;
-
-        Vector3 pos = transform.position;
-        Vector3 enemyPos = new Vector3(pos.x + rand, pos.y, pos.z);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = transform.position;
-        pos -= new Vector3(0, 0, 1) * speed * Time.deltaTime;
-
-        transform.position = pos;
+        Vector3 movement = new Vector3(0, 0, 1);
+        transform.Translate(movement * speed * Time.deltaTime);
     }
 }

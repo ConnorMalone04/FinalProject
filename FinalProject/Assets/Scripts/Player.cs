@@ -7,10 +7,12 @@ public class Player : MonoBehaviour
 {
     private bool isFiring = false;
     [SerializeField] GameObject bulletPrefab;
-    private Transform barrel;
+
     [SerializeField] float bulletSpeed = 10f;
     private float spinTimer = 0f;
     [SerializeField] float bulletDelay = 0.5f;
+
+    private Transform barrel;
 
     private Vector3 camRot;
     [SerializeField] float rotationSpeed;
@@ -18,7 +20,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        barrel = transform.GetChild(0).transform;
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class Player : MonoBehaviour
         rotateCam();
 
 
-        barrel = transform.GetChild(0);
+
         if (Input.GetButton("Fire1"))
         {
             Debug.Log("Timer: " + spinTimer);
@@ -48,9 +50,10 @@ public class Player : MonoBehaviour
         }
         if (isFiring)
         {
+            Transform transform = barrel.transform;
             //Start animation
-            Vector3 rot = new Vector3(barrel.eulerAngles.x, barrel.eulerAngles.y, barrel.eulerAngles.z + 2);
-            barrel.eulerAngles = rot;
+            Vector3 rot = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 2, transform.eulerAngles.z);
+            transform.eulerAngles = rot;
         }
         spinTimer -= 0.01f;
 

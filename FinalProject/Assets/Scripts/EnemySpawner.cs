@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -42,10 +43,18 @@ public class EnemySpawner : MonoBehaviour
 
     void spawnEnemy()
     {
-        
-
         //Makes the position relative to the parent
-        Instantiate(enemy, transform, worldPositionStays: false);
+        GameObject newEnemy = Instantiate(enemy, transform.position, Quaternion.identity);
+        
+        Transform trans = newEnemy.transform;
+
+        int rand = Random.Range(0, 40);
+        rand = rand - 20;
+        Vector3 pos = trans.position;
+        trans.position = new Vector3(pos.x + rand, pos.y, pos.z);
+
+        Vector3 rot = new Vector3(trans.eulerAngles.x, trans.eulerAngles.y + 180, trans.eulerAngles.z + 2);
+        trans.eulerAngles = rot;
 
         enemiesRemaining--;
     }
