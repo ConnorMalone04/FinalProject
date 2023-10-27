@@ -181,6 +181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyCar
       objectReference: {fileID: 0}
+    - target: {fileID: 1056008596086336, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4721907010437052, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50.918137
@@ -241,6 +245,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1056008596086336, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4653122520624201264}
+    - targetCorrespondingSourceObject: {fileID: 1056008596086336, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1983451348664091030}
   m_SourcePrefab: {fileID: 100100000, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
 --- !u!4 &8747719830906456795 stripped
 Transform:
@@ -265,3 +272,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
+  health: 100
+--- !u!65 &1983451348664091030
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8751939062780848935}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.0735626, y: 2.5570288, z: 6.692671}
+  m_Center: {x: -0.05548477, y: -0.07859647, z: 0}

@@ -26,8 +26,7 @@ public class Bullet : MonoBehaviour
         
         if (camera.GetComponent<Transform>().transform.position.z < transform.position.z - 300)
         {
-            Debug.Log("Bulluet loco: " + transform.position.z);
-            Debug.Log("Cam loco: " + camera.GetComponent<Transform>().transform.position.z);
+
             Destroy(gameObject);
         }
     }

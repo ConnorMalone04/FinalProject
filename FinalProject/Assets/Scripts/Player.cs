@@ -17,9 +17,14 @@ public class Player : MonoBehaviour
     private Vector3 camRot;
     [SerializeField] float rotationSpeed;
 
+    public int health = 100;
+    [SerializeField] GameManager gm;
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = transform.GetChild(0).GetComponent<Animator>();
         barrel = transform.GetChild(0).transform;
     }
 
@@ -33,7 +38,6 @@ public class Player : MonoBehaviour
 
         if (Input.GetButton("Fire1"))
         {
-            Debug.Log("Timer: " + spinTimer);
             if (spinTimer < bulletDelay)
             {
                 Fire();
@@ -50,10 +54,13 @@ public class Player : MonoBehaviour
         }
         if (isFiring)
         {
+            animator.SetTrigger("Spin");
+            /*
             Transform transform = barrel.transform;
             //Start animation
             Vector3 rot = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 2, transform.eulerAngles.z);
             transform.eulerAngles = rot;
+            */
         }
         spinTimer -= 0.01f;
 
@@ -72,6 +79,7 @@ public class Player : MonoBehaviour
 
     private void Fire()
     {
+        
         Vector3 fireDirection = transform.forward;
 
         fireDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z).normalized;
@@ -81,10 +89,24 @@ public class Player : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = fireDirection * bulletSpeed;
         startSpinTimer();
+        health--;
     }
 
     private void startSpinTimer()
     {
         spinTimer = 1f;
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            health -= 5;
+            if (health <= 0)
+            {
+                gm.gameOver = true;
+            }
+        }
     }
 }
