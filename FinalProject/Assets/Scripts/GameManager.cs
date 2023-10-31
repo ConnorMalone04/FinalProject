@@ -30,4 +30,9 @@ public class GameManager : MonoBehaviour
         slider.value = camera.GetComponent<Player>().health;
     }
 
+    public Transform getCameraTransform()
+    {
+        return camera.GetComponent<Transform>();
+    }
+
 }

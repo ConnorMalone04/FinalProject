@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MoveTrain : MonoBehaviour
 {
-    [SerializeField] float speed = 1f;
+    public float speed = 1f;
     [SerializeField] GameObject landScape;
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -38,5 +39,19 @@ public class MoveTrain : MonoBehaviour
             
         }
         
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("Trigger");
+        if (other.tag == "Enemy")
+        {
+            float enemySpeed = other.gameObject.GetComponent<Enemy>().speed;
+            Debug.Log("In Range");
+            if (enemySpeed >= speed) {
+                enemySpeed -= 50 *Time.deltaTime;
+                other.gameObject.GetComponent<Enemy>().speed = enemySpeed;
+            }
+        }
     }
 }

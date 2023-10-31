@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float speed = 1f;
+    public float speed = 1f;
+    [SerializeField] GameManager gm;
 
     public int health = 100;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 movement = new Vector3(0, 0, 1);
+
         transform.Translate(movement * speed * Time.deltaTime);
     }
 
@@ -39,4 +41,6 @@ public class Enemy : MonoBehaviour
     {
         //TODO
     }
+
+
 }
