@@ -7,25 +7,24 @@ public class GameManager : MonoBehaviour
 {
     public bool gameOver = false;
 
-    [SerializeField] GameObject enemySpawner;
-    private GameObject[] enemies;
-    public int enemyCount;
-
+    [SerializeField] GameObject enemySpawnerObject;
+    private EnemySpawner spawner;
     [SerializeField] Camera camera;
 
     [SerializeField] Slider slider;
     // Start is called before the first frame update
     void Start()
     {
-        enemySpawner.GetComponent<EnemySpawner>().NewWave();
+        spawner = enemySpawnerObject.GetComponent<EnemySpawner>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // count enemies
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        enemyCount = enemies.Length;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies.Length == 0) {
+            spawner.NewWave();
+        }
 
         slider.value = camera.GetComponent<Player>().health;
     }

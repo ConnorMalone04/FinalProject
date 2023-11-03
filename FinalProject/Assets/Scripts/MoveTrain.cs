@@ -41,17 +41,15 @@ public class MoveTrain : MonoBehaviour
         
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger");
         if (other.tag == "Enemy")
         {
             float enemySpeed = other.gameObject.GetComponent<Enemy>().speed;
-            Debug.Log("In Range");
-            if (enemySpeed >= speed) {
-                enemySpeed -= 50 *Time.deltaTime;
-                other.gameObject.GetComponent<Enemy>().speed = enemySpeed;
-            }
+            enemySpeed = speed;
+            other.gameObject.GetComponent<Enemy>().speed = enemySpeed;
+
         }
     }
 }

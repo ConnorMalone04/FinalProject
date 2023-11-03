@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
-        barrel = transform.GetChild(0).transform;
+        barrel = transform.GetChild(1).transform;
     }
 
     // Update is called once per frame

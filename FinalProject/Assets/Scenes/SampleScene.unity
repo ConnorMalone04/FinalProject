@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10650, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -716,12 +716,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 82.47317, y: 55.911392, z: 70.22211}
-  m_Center: {x: -2.0910072, y: -13.016407, z: 20.465973}
+  m_Size: {x: 3.140491, y: 2.726565, z: 3.140491}
+  m_Center: {x: 0, y: 0.102152586, z: 0}
 --- !u!1 &1049118190
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,8 +854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOver: 0
-  enemySpawner: {fileID: 2017349384}
-  enemyCount: 0
+  enemySpawnerObject: {fileID: 2017349384}
   camera: {fileID: 963194227}
   slider: {fileID: 680786345}
 --- !u!4 &1151243143
@@ -942,8 +941,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 143.55531, y: 58.73, z: 107.20798}
-  m_Center: {x: -4.5596848, y: 0, z: 23.633987}
+  m_Size: {x: 143.55531, y: 58.73, z: 89.040985}
+  m_Center: {x: -4.5596848, y: 0, z: 14.550491}
 --- !u!54 &1356615398
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1189,7 +1188,7 @@ Transform:
   m_GameObject: {fileID: 2017349384}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9396133, y: 0.5, z: 790.5}
+  m_LocalPosition: {x: -1.9396133, y: 0.5, z: 384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1208,8 +1207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 8751939062780848935, guid: 4623498fc573a4dcd888e52b11fd3d06, type: 3}
-  spawnDelay: 2
   spawn: 1
+  enemiesRemaining: 0
 --- !u!136 &2017349387
 CapsuleCollider:
   m_ObjectHideFlags: 0
