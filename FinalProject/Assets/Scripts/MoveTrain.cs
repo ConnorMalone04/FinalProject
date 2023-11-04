@@ -49,7 +49,8 @@ public class MoveTrain : MonoBehaviour
             float enemySpeed = other.gameObject.GetComponent<Enemy>().speed;
             enemySpeed = speed;
             other.gameObject.GetComponent<Enemy>().speed = enemySpeed;
-
+            
+            other.gameObject.GetComponent<Enemy>().inRange = true;
         }
     }
 }

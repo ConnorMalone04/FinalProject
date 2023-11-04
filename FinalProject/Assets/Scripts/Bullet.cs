@@ -14,7 +14,6 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         camera = GameObject.FindGameObjectWithTag("MainCamera");
 
-
         Quaternion rot = transform.rotation;
         Vector3 rotV = new Vector3(rot.eulerAngles.x + 90, rot.eulerAngles.y, rot.eulerAngles.z);
         transform.eulerAngles = rotV;

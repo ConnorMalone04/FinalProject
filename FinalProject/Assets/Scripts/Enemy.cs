@@ -5,14 +5,15 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed = 1f;
-    [SerializeField] GameManager gm;
+    [SerializeField] GameObject explosion;
 
     public int health = 100;
+    public bool inRange = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        
     }
 
     // Update is called once per frame
@@ -32,15 +33,14 @@ public class Enemy : MonoBehaviour
             if (health <= 0)
             {
                 Explode();
-                Destroy(gameObject);
+                Destroy(gameObject, 0.1f);
             }
         }
     }
 
     public void Explode()
     {
-        //TODO
+        GameObject newExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
+        Destroy(newExplosion,3f);
     }
-
-
 }

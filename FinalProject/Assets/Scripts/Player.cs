@@ -89,7 +89,6 @@ public class Player : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = fireDirection * bulletSpeed;
         startSpinTimer();
-        health--;
     }
 
     private void startSpinTimer()
