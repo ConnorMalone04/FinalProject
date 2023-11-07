@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     [SerializeField] GameManager gm;
     Animator animator;
 
+    public AudioSource src;
+    [SerializeField] AudioClip fireSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,10 +34,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         rotateCam();
-
-
 
         if (Input.GetButton("Fire1"))
         {
@@ -79,7 +79,9 @@ public class Player : MonoBehaviour
 
     private void Fire()
     {
-        
+        src.clip = fireSound;
+        src.Play();
+
         Vector3 fireDirection = transform.forward;
 
         fireDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z).normalized;
@@ -101,6 +103,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
+            Debug.Log("player hit");
             health -= 5;
             if (health <= 0)
             {

@@ -15,14 +15,12 @@ public class EnemyGun : MonoBehaviour
         
 		if (gameObject.GetComponentInParent<Enemy>().inRange)
 		{
-            Debug.Log("in range");
             player = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
 			 //Rotate the enemy towards the player
 			transform.rotation = Quaternion.LookRotation(player.position - transform.position, transform.up);
 			 
 			if (Time.time - lastAttackTime >= 1f/fireRate)
 			{
-                Debug.Log("Time to shoot");
 				 shootBullet();
 				 lastAttackTime = Time.time;
 			}
@@ -31,7 +29,7 @@ public class EnemyGun : MonoBehaviour
 	 
      void shootBullet()
      {
-        Debug.Log("Shooting");
+
         //Shoot the Bullet in the forward direction of the player
         Vector3 pos = transform.position;
         pos = new Vector3(pos.x, pos.y, pos.z - 10);

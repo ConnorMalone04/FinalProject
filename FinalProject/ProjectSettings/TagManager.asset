@@ -9,6 +9,7 @@ TagManager:
   - Barrel
   - Enemy
   - Bullet
+  - Train
   layers:
   - Default
   - TransparentFX

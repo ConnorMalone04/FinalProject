@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -22,7 +24,6 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (camera.GetComponent<Transform>().transform.position.z < transform.position.z - 300)
         {
 
@@ -32,6 +33,21 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        Debug.Log("Collision");
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Main Camera") {
+            Debug.Log("Collision Player");
+            Destroy(gameObject);
+            
+        }
+        if (collision.gameObject.tag == "Enemy") {
+            Debug.Log("Collision Enemy");
+            Destroy(gameObject);
+            
+        }
+        else if (collision.gameObject.tag == "Land") {
+            // Instantiate(dustPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 }

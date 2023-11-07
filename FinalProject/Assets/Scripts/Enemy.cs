@@ -28,8 +28,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Debug.Log("Hit");
-            health -= 50;
+            health -= 20;
             if (health <= 0)
             {
                 Explode();
