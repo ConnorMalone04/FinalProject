@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] float bulletSpeed = 10f;
     private float spinTimer = 0f;
     [SerializeField] float bulletDelay = 0.5f;
+    [SerializeField] float spread = 0.1f;
 
     private Transform barrel;
 
@@ -72,7 +74,7 @@ public class Player : MonoBehaviour
         camRot.y += Input.GetAxis("Mouse Y") * rotationSpeed;
 
         camRot.x = Mathf.Clamp(camRot.x, -50, 50);
-        camRot.y = Mathf.Clamp(camRot.y, -10, 10);
+        camRot.y = Mathf.Clamp(camRot.y, -10, 20);
 
         transform.localRotation = Quaternion.Euler(-camRot.y, camRot.x, 0);
     }
@@ -82,7 +84,13 @@ public class Player : MonoBehaviour
         src.clip = fireSound;
         src.Play();
 
-        Vector3 fireDirection = transform.forward;
+        float x = UnityEngine.Random.Range(-spread, spread);
+        float y = UnityEngine.Random.Range(-spread, spread);
+        float z = UnityEngine.Random.Range(-spread, spread);
+
+
+        Vector3 dir = transform.forward;
+        Vector3 fireDirection = new Vector3(dir.x + x, dir.y + y, dir.z + z);
 
         fireDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z).normalized;
 
@@ -99,9 +107,9 @@ public class Player : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Bullet")
         {
             Debug.Log("player hit");
             health -= 5;
@@ -109,6 +117,17 @@ public class Player : MonoBehaviour
             {
                 gm.gameOver = true;
             }
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "Missile")
+        {
+            Debug.Log("player hit");
+            health -= 20;
+            if (health <= 0)
+            {
+                gm.gameOver = true;
+            }
+            Destroy(other.gameObject);
         }
     }
 }

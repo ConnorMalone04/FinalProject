@@ -1,15 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour
 {
     Rigidbody rb;
     GameObject camera;
-    [SerializeField] GameObject dustPrefab;
+    [SerializeField] GameObject explosion;
 
 
     // Start is called before the first frame update
@@ -19,7 +16,7 @@ public class Bullet : MonoBehaviour
         camera = GameObject.FindGameObjectWithTag("MainCamera");
 
         Quaternion rot = transform.rotation;
-        Vector3 rotV = new Vector3(rot.eulerAngles.x + 90, rot.eulerAngles.y, rot.eulerAngles.z);
+        Vector3 rotV = new Vector3(rot.eulerAngles.x - 90, rot.eulerAngles.y, rot.eulerAngles.z);
         transform.eulerAngles = rotV;
     }
 
@@ -35,20 +32,15 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision");
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "MainCamera") {
-            Debug.Log("Collision Player");
             Destroy(gameObject);
+            Vector3 pos = transform.position;
+            Instantiate(explosion,pos, Quaternion.identity);
         }
-        if (collision.gameObject.tag == "Enemy") {
-            Debug.Log("Collision Enemy");
+        if (collision.gameObject.tag == "Bullet") {
             Destroy(gameObject);
-        }
-        if (collision.gameObject.tag == "Land") {
-            Debug.Log("Hit Ground");
-            Instantiate(dustPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Vector3 pos = transform.position;
+            Instantiate(explosion,pos, Quaternion.identity);
         }
     }
 }

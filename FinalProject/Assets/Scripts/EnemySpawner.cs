@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] GameObject enemy;
+    [SerializeField] GameObject[] enemy;
     public bool spawn = false;
     private int wave = 0;
     public int enemiesRemaining;
@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < eToSpawn; i++) {
             //Makes the position relative to the parent
-            GameObject newEnemy = Instantiate(enemy, transform.position, Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemy[UnityEngine.Random.Range(0,enemy.Length)], transform.position, Quaternion.identity);
             
             Transform trans = newEnemy.transform;
             Vector3 pos = trans.position;
@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
                 trans.position = new Vector3(pos.x - ((i+1) * 4), pos.y + 0.55f, pos.z);
             }
 
-            Vector3 rot = new Vector3(trans.eulerAngles.x, trans.eulerAngles.y + 180, trans.eulerAngles.z + 2);
+            Vector3 rot = new Vector3(trans.eulerAngles.x, trans.eulerAngles.y + 180, trans.eulerAngles.z);
             trans.eulerAngles = rot;
             enemiesRemaining--;
             yield return new WaitForSeconds(0.4f);
