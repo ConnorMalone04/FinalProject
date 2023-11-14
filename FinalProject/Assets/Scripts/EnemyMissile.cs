@@ -17,7 +17,7 @@ public class EnemyMissile : MonoBehaviour
 		if (gameObject.GetComponentInParent<Enemy>().inRange)
 		{
          player = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
-         Vector3 futurePlayerLocation = new Vector3(player.position.x, player.position.y - 2, player.position.z - 20);
+         Vector3 futurePlayerLocation = new Vector3(player.position.x, player.position.y, player.position.z - 25);
 			 //Rotate the enemy towards the player
 			transform.rotation = Quaternion.LookRotation(futurePlayerLocation - transform.position, transform.up);
 			 

@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         
         if (enemies.Length == 0) {
             spawner.NewWave();
+            player.health = 100;
             wave++;
             waveText.text = "Wave " + wave;
         }
