@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Bullet
   - Train
+  - Missile
   layers:
   - Default
   - TransparentFX
