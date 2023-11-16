@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI waveText;
 
     [SerializeField] GameObject deathScreen;
-    [SerializeField] GameObject menuButton;
+    [SerializeField] GameObject menuObject;
     private int wave = 0;
     private GameObject[] enemies;
     [SerializeField] GameObject train;
@@ -55,10 +55,9 @@ public class GameManager : MonoBehaviour
 
     private void GameOver() {
         if (!gameOver) {
-            Debug.Log("GameOver");
             gameOver = true;
             deathScreen.GetComponent<DeathScreen>().gameOver = true;
-            menuButton.SetActive(true);
+            menuObject.SetActive(true);
 
             foreach (GameObject e in enemies) {
                 Destroy(e);
