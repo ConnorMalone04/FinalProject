@@ -43,7 +43,6 @@ public class MoveTrain : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger");
         if (other.tag == "Enemy")
         {
             float enemySpeed = other.gameObject.GetComponent<Enemy>().speed;

@@ -15,7 +15,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Slider slider;
     [SerializeField] TextMeshProUGUI waveText;
+
+    [SerializeField] GameObject deathScreen;
+    [SerializeField] GameObject menuButton;
     private int wave = 0;
+    private GameObject[] enemies;
+    [SerializeField] GameObject train;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +32,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.health <= 0) {
-            gameOver = true;
-        }
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (player.health <= 0) {
+            GameOver();
+        }
         
-        if (enemies.Length == 0) {
+        else if (enemies.Length == 0) {
             spawner.NewWave();
             player.health = 100;
             wave++;
@@ -46,6 +51,20 @@ public class GameManager : MonoBehaviour
     public Transform getCameraTransform()
     {
         return camera.GetComponent<Transform>();
+    }
+
+    private void GameOver() {
+        if (!gameOver) {
+            Debug.Log("GameOver");
+            gameOver = true;
+            deathScreen.GetComponent<DeathScreen>().gameOver = true;
+            menuButton.SetActive(true);
+
+            foreach (GameObject e in enemies) {
+                Destroy(e);
+            }
+            train.GetComponent<MoveTrain>().speed = 0f;
+        }
     }
 
 }

@@ -111,22 +111,12 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
-            Debug.Log("player hit");
             health -= 5;
-            if (health <= 0)
-            {
-                gm.gameOver = true;
-            }
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "Missile")
         {
-            Debug.Log("player hit");
             health -= 20;
-            if (health <= 0)
-            {
-                gm.gameOver = true;
-            }
             Destroy(other.gameObject);
         }
     }

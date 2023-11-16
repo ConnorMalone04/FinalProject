@@ -35,18 +35,13 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision");
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "MainCamera") {
-            Debug.Log("Collision Player");
             Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Enemy") {
-            Debug.Log("Collision Enemy");
             Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Land") {
-            Debug.Log("Hit Ground");
             Instantiate(dustPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
